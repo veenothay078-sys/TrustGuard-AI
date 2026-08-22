@@ -226,15 +226,19 @@ function hideAll() {
 }
 
 // ─── Navigate to Dashboard ─────────────────────────────────────────────────────
-function viewReport() {
+async function viewReport() {
+  const stored = await chrome.storage.sync.get(['dashboardUrl']);
+  const dashBase = stored.dashboardUrl || DASHBOARD_URL;
   const url = currentAnalysisId
-    ? `${DASHBOARD_URL}/report/${currentAnalysisId}`
-    : `${DASHBOARD_URL}/analyze`;
+    ? `${dashBase}/report/${currentAnalysisId}`
+    : `${dashBase}/analyze`;
   chrome.tabs.create({ url });
 }
 
-function openChat() {
-  chrome.tabs.create({ url: `${DASHBOARD_URL}/analyze` });
+async function openChat() {
+  const stored = await chrome.storage.sync.get(['dashboardUrl']);
+  const dashBase = stored.dashboardUrl || DASHBOARD_URL;
+  chrome.tabs.create({ url: `${dashBase}/analyze` });
 }
 
 // ─── Start ─────────────────────────────────────────────────────────────────────
