@@ -34,6 +34,7 @@ app.use(cors({
     // Allow requests with no origin (extensions, curl, etc.)
     if (!origin) return callback(null, true);
     if (
+      allowedOrigins.includes('*') ||
       allowedOrigins.some(allowed => origin.startsWith(allowed)) ||
       origin.startsWith('chrome-extension://') ||
       origin.startsWith('moz-extension://')
