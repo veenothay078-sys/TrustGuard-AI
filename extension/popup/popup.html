@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TrustGuard</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- Header -->
+    <div class="header">
+      <div class="logo">
+        <div class="logo-icon">🛡️</div>
+        <div class="logo-text">
+          <div class="logo-title">TRUSTGUARD</div>
+          <div class="logo-sub">AI Scam & Fraud Risk Manager</div>
+        </div>
+      </div>
+      <div id="demo-badge" class="demo-badge hidden">DEMO</div>
+    </div>
+
+    <!-- Current URL Info -->
+    <div class="url-info">
+      <div class="url-label">Current Website</div>
+      <div id="current-url" class="url-value">Loading...</div>
+    </div>
+
+    <!-- Status Panel -->
+    <div id="status-panel" class="status-panel">
+      <div id="initial-state">
+        <div class="idle-text">Click "Scan This Page" to analyze for risks</div>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="actions">
+      <button id="btn-scan-page" class="btn btn-primary">
+        🔍 Scan This Page
+      </button>
+      <button id="btn-analyze-selected" class="btn btn-secondary">
+        ✂️ Analyze Selected Text
+      </button>
+    </div>
+
+    <!-- Loading State -->
+    <div id="loading-state" class="loading-state hidden">
+      <div class="spinner"></div>
+      <div class="loading-text">Analyzing for risk...</div>
+    </div>
+
+    <!-- Result Panel -->
+    <div id="result-panel" class="result-panel hidden">
+      <!-- Risk Score -->
+      <div class="risk-overview">
+        <div class="score-container">
+          <svg id="score-svg" width="80" height="80" viewBox="0 0 80 80">
+            <circle cx="40" cy="40" r="32" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="6"/>
+            <circle id="score-arc" cx="40" cy="40" r="32" fill="none" stroke="#4f8ef7" stroke-width="6"
+              stroke-dasharray="201" stroke-dashoffset="201" stroke-linecap="round"
+              transform="rotate(-90 40 40)"/>
+          </svg>
+          <div class="score-center">
+            <div id="score-number" class="score-number">0</div>
+            <div class="score-slash">/100</div>
+          </div>
+        </div>
+        <div class="risk-details">
+          <div id="risk-level-badge" class="risk-badge"></div>
+          <div id="risk-categories" class="risk-categories"></div>
+        </div>
+      </div>
+
+      <!-- Indicators -->
+      <div id="indicators-section" class="section">
+        <div class="section-title">⚠ Detected Indicators</div>
+        <div id="indicators-list" class="indicators-list"></div>
+      </div>
+
+      <!-- Recommendation -->
+      <div id="rec-section" class="section">
+        <div class="section-title">✅ Recommendation</div>
+        <div id="recommendation" class="recommendation-text"></div>
+      </div>
+
+      <!-- View Full Report Button -->
+      <button id="btn-view-report" class="btn btn-secondary btn-full">
+        📄 View Full Report
+      </button>
+      <button id="btn-ask-ai" class="btn btn-ghost btn-full">
+        💬 Ask TrustGuard AI
+      </button>
+    </div>
+
+    <!-- Error State -->
+    <div id="error-panel" class="error-panel hidden">
+      <div class="error-icon">⚠️</div>
+      <div id="error-message" class="error-text">An error occurred</div>
+      <button id="btn-retry" class="btn btn-secondary btn-sm">Retry</button>
+    </div>
+
+    <!-- Demo Banner -->
+    <div id="demo-banner" class="demo-banner hidden">
+      ⚡ DEMO DATA – Not a real analysis
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="disclaimer">
+      AI-assisted risk assessment. Always verify through official channels.
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

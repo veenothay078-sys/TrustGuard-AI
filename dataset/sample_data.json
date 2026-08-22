@@ -1,0 +1,117 @@
+{
+  "version": "1.0",
+  "description": "TrustGuard sample dataset for development and testing. NOT fabricated research data - development samples only.",
+  "disclaimer": "This is a DEMO dataset only. Labels are illustrative. Not validated ground truth.",
+  "labels": ["SAFE", "SCAM", "PHISHING", "FRAUD", "SUSPICIOUS"],
+  "fields": ["id", "text", "url", "label", "category", "source", "features"],
+  "samples": [
+    {
+      "id": "sample-001",
+      "text": "URGENT: Your SBI account has been suspended. Verify your OTP and account details immediately at http://sbi-secure-verify.xyz/login to restore access.",
+      "url": "http://sbi-secure-verify.xyz/login",
+      "label": "PHISHING",
+      "category": "Phishing Risk",
+      "source": "demo",
+      "features": ["urgency", "impersonation", "credential_request", "suspicious_url", "http_not_https"]
+    },
+    {
+      "id": "sample-002",
+      "text": "Congratulations! You have won ₹10,00,000 in the National Digital Lottery! Claim your prize by sending your bank account details and ₹500 processing fee to our agent.",
+      "url": null,
+      "label": "SCAM",
+      "category": "Prize/Reward Scam",
+      "source": "demo",
+      "features": ["reward_claim", "financial_request", "upfront_fee"]
+    },
+    {
+      "id": "sample-003",
+      "text": "Guaranteed 500% returns on your investment in 30 days! Join our exclusive crypto trading group. Limited to 10 investors. Act now before slots fill up!",
+      "url": null,
+      "label": "FRAUD",
+      "category": "Investment Scam",
+      "source": "demo",
+      "features": ["guaranteed_returns", "urgency", "unrealistic_claims", "pressure_tactics"]
+    },
+    {
+      "id": "sample-004",
+      "text": "Dear Customer, your Amazon order #1234 has shipped. Expected delivery: 3-5 business days. Track your order at amazon.com/track",
+      "url": "https://www.amazon.com/track",
+      "label": "SAFE",
+      "category": null,
+      "source": "demo",
+      "features": []
+    },
+    {
+      "id": "sample-005",
+      "text": "Your Microsoft account has been hacked. Call our toll-free number 1-800-FAKE immediately to protect your computer from viruses. Do not turn off your device.",
+      "url": null,
+      "label": "SCAM",
+      "category": "Impersonation Scam",
+      "source": "demo",
+      "features": ["tech_support_scam", "impersonation", "fear_tactics", "urgency"]
+    },
+    {
+      "id": "sample-006",
+      "text": "Hi team, please find the meeting notes from today's standup attached. Next meeting is scheduled for Thursday at 2pm.",
+      "url": null,
+      "label": "SAFE",
+      "category": null,
+      "source": "demo",
+      "features": []
+    },
+    {
+      "id": "sample-007",
+      "text": "Your PayPal account is limited. Verify your identity immediately to avoid permanent suspension: http://paypa1-verify.tk/secure",
+      "url": "http://paypa1-verify.tk/secure",
+      "label": "PHISHING",
+      "category": "Phishing Risk",
+      "source": "demo",
+      "features": ["impersonation", "lookalike_domain", "credential_request", "urgency", "suspicious_tld"]
+    },
+    {
+      "id": "sample-008",
+      "text": "Send ₹1000 via UPI to claim your EXCLUSIVE deal! Transfer to fraud-merchant@upi and screenshot your payment to receive your order.",
+      "url": null,
+      "label": "FRAUD",
+      "category": "Payment Scam",
+      "source": "demo",
+      "features": ["payment_request", "suspicious_upi", "advance_payment"]
+    },
+    {
+      "id": "sample-009",
+      "text": "Hi! I'm a friend from university. I'm stuck abroad and need urgent help. Can you please send me $500 via Western Union? I'll pay you back double when I return.",
+      "url": null,
+      "label": "SCAM",
+      "category": "Social Engineering Risk",
+      "source": "demo",
+      "features": ["impersonation", "financial_request", "urgency", "emotional_manipulation", "advance_fee"]
+    },
+    {
+      "id": "sample-010",
+      "text": "Your electricity bill of ₹2,340 is due on March 15. Pay online at https://www.mahadiscom.in/ or at any authorized payment center.",
+      "url": "https://www.mahadiscom.in/",
+      "label": "SAFE",
+      "category": null,
+      "source": "demo",
+      "features": []
+    },
+    {
+      "id": "sample-011",
+      "text": "",
+      "url": null,
+      "label": "INVALID",
+      "category": null,
+      "source": "demo",
+      "features": ["empty_input"]
+    },
+    {
+      "id": "sample-012",
+      "url": "not-a-valid-url-xyz",
+      "text": null,
+      "label": "SUSPICIOUS",
+      "category": "Malicious Link Risk",
+      "source": "demo",
+      "features": ["malformed_url"]
+    }
+  ]
+}

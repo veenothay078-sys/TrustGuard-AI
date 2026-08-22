@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>TrustGuard – Settings</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, 'Inter', sans-serif; background: #0a0e1a; color: #f1f5f9; padding: 2rem; max-width: 500px; }
+    h1 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.25rem; }
+    .sub { color: #64748b; font-size: 0.85rem; margin-bottom: 2rem; }
+    .form-group { margin-bottom: 1.25rem; }
+    label { display: block; font-size: 0.8rem; font-weight: 600; color: #94a3b8; margin-bottom: 0.4rem; }
+    input, select { width: 100%; background: #141c30; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #f1f5f9; font-size: 0.875rem; padding: 0.625rem 0.875rem; outline: none; font-family: inherit; }
+    input:focus, select:focus { border-color: #4f8ef7; }
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.625rem 1.25rem; border-radius: 8px; font-size: 0.875rem; font-weight: 600; cursor: pointer; border: none; background: linear-gradient(135deg, #4f8ef7, #3a7ae8); color: white; font-family: inherit; }
+    .btn:hover { filter: brightness(1.1); }
+    .success { color: #22c55e; font-size: 0.85rem; margin-top: 0.75rem; display: none; }
+    .logo { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; }
+    .logo-icon { font-size: 1.5rem; }
+    .note { font-size: 0.8rem; color: #475569; margin-top: 0.3rem; line-height: 1.5; }
+    .divider { border: none; border-top: 1px solid rgba(255,255,255,0.07); margin: 1.5rem 0; }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <div class="logo-icon">🛡️</div>
+    <div>
+      <div style="font-weight:800;font-size:1rem">TrustGuard</div>
+      <div style="font-size:0.7rem;color:#64748b">Settings</div>
+    </div>
+  </div>
+
+  <h1>Extension Settings</h1>
+  <p class="sub">Configure TrustGuard to connect to your backend</p>
+
+  <div class="form-group">
+    <label>Backend API URL</label>
+    <input type="url" id="backend-url" placeholder="http://localhost:5000" />
+    <p class="note">The URL where TrustGuard backend is running. Default: http://localhost:5000</p>
+  </div>
+
+  <hr class="divider" />
+  <div class="form-group">
+    <label>Dashboard URL</label>
+    <input type="url" id="dashboard-url" placeholder="http://localhost:5173" />
+    <p class="note">The URL of the TrustGuard web dashboard. Default: http://localhost:5173</p>
+  </div>
+
+  <hr class="divider" />
+
+  <button class="btn" id="save-btn">💾 Save Settings</button>
+  <p class="success" id="success-msg">✅ Settings saved successfully!</p>
+
+  <script>
+    const backendInput = document.getElementById('backend-url');
+    const dashboardInput = document.getElementById('dashboard-url');
+    const saveBtn = document.getElementById('save-btn');
+    const successMsg = document.getElementById('success-msg');
+
+    // Load stored values
+    chrome.storage.sync.get(['backendUrl', 'dashboardUrl'], (data) => {
+      backendInput.value = data.backendUrl || 'http://localhost:5000';
+      dashboardInput.value = data.dashboardUrl || 'http://localhost:5173';
+    });
+
+    // Save
+    saveBtn.addEventListener('click', () => {
+      chrome.storage.sync.set({
+        backendUrl: backendInput.value.replace(/\/$/, ''),
+        dashboardUrl: dashboardInput.value.replace(/\/$/, '')
+      }, () => {
+        successMsg.style.display = 'block';
+        setTimeout(() => successMsg.style.display = 'none', 3000);
+      });
+    });
+  </script>
+</body>
+</html>
