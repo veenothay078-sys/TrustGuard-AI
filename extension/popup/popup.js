@@ -1,7 +1,7 @@
 // TrustGuard Extension Popup Script
 
-const BACKEND_URL = 'http://localhost:5000';
-const DASHBOARD_URL = 'http://localhost:5173';
+const BACKEND_URL = 'https://backend-two-mu-84.vercel.app';
+const DASHBOARD_URL = 'https://frontend-gules-seven-79.vercel.app';
 
 // DOM References
 const el = id => document.getElementById(id);

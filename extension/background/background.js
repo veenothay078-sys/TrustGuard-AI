@@ -1,7 +1,7 @@
 // TrustGuard Background Service Worker
 // Handles context menus and inter-component communication
 
-const BACKEND_URL = 'http://localhost:5000';
+const BACKEND_URL = 'https://backend-two-mu-84.vercel.app';
 
 // ─── Context Menu Setup ───────────────────────────────────────────────────────
 chrome.runtime.onInstalled.addListener(() => {

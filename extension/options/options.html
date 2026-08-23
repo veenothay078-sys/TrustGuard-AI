@@ -35,15 +35,15 @@
 
   <div class="form-group">
     <label>Backend API URL</label>
-    <input type="url" id="backend-url" placeholder="http://localhost:5000" />
-    <p class="note">The URL where TrustGuard backend is running. Default: http://localhost:5000</p>
+    <input type="url" id="backend-url" placeholder="https://backend-two-mu-84.vercel.app" />
+    <p class="note">The URL where TrustGuard backend is running. Default: https://backend-two-mu-84.vercel.app</p>
   </div>
 
   <hr class="divider" />
   <div class="form-group">
     <label>Dashboard URL</label>
-    <input type="url" id="dashboard-url" placeholder="http://localhost:5173" />
-    <p class="note">The URL of the TrustGuard web dashboard. Default: http://localhost:5173</p>
+    <input type="url" id="dashboard-url" placeholder="https://frontend-gules-seven-79.vercel.app" />
+    <p class="note">The URL of the TrustGuard web dashboard. Default: https://frontend-gules-seven-79.vercel.app</p>
   </div>
 
   <hr class="divider" />
@@ -59,8 +59,8 @@
 
     // Load stored values
     chrome.storage.sync.get(['backendUrl', 'dashboardUrl'], (data) => {
-      backendInput.value = data.backendUrl || 'http://localhost:5000';
-      dashboardInput.value = data.dashboardUrl || 'http://localhost:5173';
+      backendInput.value = data.backendUrl || 'https://backend-two-mu-84.vercel.app';
+      dashboardInput.value = data.dashboardUrl || 'https://frontend-gules-seven-79.vercel.app';
     });
 
     // Save
