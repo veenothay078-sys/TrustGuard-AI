@@ -6,12 +6,22 @@ const { analyzeText, analyzeUrlEndpoint, analyzePage, analyzeScreenshot } = requ
 
 const router = express.Router();
 
+const os = require('os');
+const fs = require('fs');
+
 // ─── File Upload Config ────────────────────────────────────────────────────────
 const maxFileSizeMB = parseInt(process.env.MAX_FILE_SIZE_MB) || 5;
+const uploadDir = process.env.UPLOAD_DIR 
+  ? path.resolve(process.env.UPLOAD_DIR) 
+  : (process.env.NODE_ENV === 'production' || process.env.VERCEL ? os.tmpdir() : path.join(__dirname, '../uploads'));
+
+if (!fs.existsSync(uploadDir)) {
+  try { fs.mkdirSync(uploadDir, { recursive: true }); } catch (_) {}
+}
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, '../uploads'));
+    cb(null, uploadDir);
   },
   filename: (req, file, cb) => {
     const ext = path.extname(file.originalname);

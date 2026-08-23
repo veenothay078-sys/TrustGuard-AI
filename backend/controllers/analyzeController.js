@@ -208,17 +208,24 @@ async function analyzeScreenshot(req, res, next) {
       return res.status(400).json({ error: 'Screenshot file is required.' });
     }
 
-    // OCR extraction
-    let extractedText = '';
+    // OCR extraction with timeout protection
+    let extractedText = req.body.extractedText || '';
     try {
       const Tesseract = require('tesseract.js');
-      const result = await Tesseract.recognize(req.file.path, 'eng', {
-        logger: () => {} // Suppress logger
-      });
-      extractedText = result.data.text;
+      const ocrPromise = Tesseract.recognize(req.file.path, 'eng', {
+        logger: () => {}
+      }).then(r => r.data.text);
+      
+      const timeoutPromise = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('OCR processing timed out')), 8000)
+      );
+      
+      extractedText = await Promise.race([ocrPromise, timeoutPromise]);
     } catch (ocrErr) {
       console.warn('OCR warning:', ocrErr.message);
-      extractedText = req.body.extractedText || '';
+      if (!extractedText) {
+        extractedText = req.body.extractedText || 'Screenshot text could not be extracted automatically in this cloud instance. Please provide text directly.';
+      }
     }
 
     if (!extractedText || extractedText.trim().length < 5) {

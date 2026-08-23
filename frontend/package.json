@@ -23,6 +23,7 @@
     "vite": "^8.2.0"
   },
   "devDependencies": {
-    "oxlint": "^1.75.0"
+    "oxlint": "^1.75.0",
+    "vercel": "^59.5.0"
   }
 }

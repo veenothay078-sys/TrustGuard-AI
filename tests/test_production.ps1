@@ -23,3 +23,9 @@ Write-Host "`n=== TEST 5: RAG Search ==="
 $ragBody = @{ categories = @("Phishing Risk"); text = "fake login page credential theft" } | ConvertTo-Json
 $resRag = Invoke-RestMethod -Uri "$backendUrl/api/rag/search" -Method Post -Body $ragBody -ContentType "application/json"
 $resRag | ConvertTo-Json -Depth 5
+
+Write-Host "`n=== TEST 6: AI Chat ==="
+$chatBody = @{ message = "What are the key indicators of a scam?" } | ConvertTo-Json
+$resChat = Invoke-RestMethod -Uri "$backendUrl/api/chat" -Method Post -Body $chatBody -ContentType "application/json"
+$resChat | ConvertTo-Json -Depth 5
+
