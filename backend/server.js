@@ -36,6 +36,7 @@ app.use(cors({
     if (
       allowedOrigins.includes('*') ||
       allowedOrigins.some(allowed => origin.startsWith(allowed)) ||
+      origin.endsWith('.vercel.app') ||
       origin.startsWith('chrome-extension://') ||
       origin.startsWith('moz-extension://')
     ) {
